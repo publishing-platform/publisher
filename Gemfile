@@ -8,6 +8,7 @@ gem "bootsnap", require: false
 gem "jbuilder"
 gem "jsbundling-rails"
 gem "pg", "~> 1.1"
+gem "publishing_platform_sso"
 gem "puma", ">= 5.0"
 gem "sassc-rails"
 gem "sprockets-rails"
