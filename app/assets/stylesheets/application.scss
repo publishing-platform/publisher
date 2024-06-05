@@ -3,3 +3,9 @@
 .container {
   max-width: 960px;
 }
+
+.index-button-group {
+  @include media-breakpoint-up(sm) {
+    float: right;
+  }
+}

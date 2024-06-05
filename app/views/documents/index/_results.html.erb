@@ -1,0 +1,21 @@
+<table class="table">
+  <caption class="visually-hidden">Document list</caption>
+  <thead>
+    <tr>
+      <th scope="col">Document title</th>
+      <th scope="col">Document type</th>
+      <th scope="col">Status</th>
+      <th scope="col">Last updated</th>
+    </tr>
+  </thead>  
+  <tbody>
+    <% @editions.each do |edition| %>
+      <tr>
+        <td><%= edition.title_or_fallback unless false %></td>
+        <td><%= edition.document_type.label unless false %></td>
+        <td></td>
+        <td><%= edition.last_edited_at.to_fs(:publishing_platform_date) unless false %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

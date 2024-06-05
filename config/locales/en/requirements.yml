@@ -1,0 +1,5 @@
+en:
+  requirements:
+    document_type_selection:
+      not_selected:
+        message: Select a document type

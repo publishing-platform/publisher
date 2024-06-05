@@ -1,0 +1,11 @@
+<%
+  field ||= nil
+  id = "#{field}-errors"
+%>
+
+<% if @issues&.has_key?(field) %>
+  <%= tag.div id: id, class: "invalid-feedback" do %>
+    <% errors = @issues.items_for(field).map { |item| item.message } %>
+      <%= raw(errors.join("<br />")) %>
+  <% end %>
+<% end %>
