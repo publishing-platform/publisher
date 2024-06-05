@@ -5,6 +5,7 @@ ruby "3.1.2"
 gem "rails", "~> 7.1.3", ">= 7.1.3.2"
 
 gem "bootsnap", require: false
+gem "interactor"
 gem "jbuilder"
 gem "jsbundling-rails"
 gem "pg", "~> 1.1"
