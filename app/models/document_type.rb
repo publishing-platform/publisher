@@ -1,11 +1,10 @@
 class DocumentType
   include InitializeWithHash
 
-  attr_reader :id, 
+  attr_reader :id,
               :label,
               :contents,
               :metadata
-              
 
   # class-level method
   def self.find(id)
@@ -27,10 +26,10 @@ class DocumentType
         new(document_type)
       end
     end
-  end  
+  end
 
   class Metadata
     include InitializeWithHash
     attr_reader :schema_name, :rendering_app
-  end  
+  end
 end

@@ -3,7 +3,7 @@ class Document < ApplicationRecord
   attr_readonly :content_id
 
   belongs_to :created_by, class_name: "User"
-  
+
   has_many :editions
 
   has_one :current_edition,
@@ -18,6 +18,5 @@ class Document < ApplicationRecord
 
   scope :with_current_edition, lambda {
     joins(:current_edition).includes(:current_edition)
-  }          
-
+  }
 end

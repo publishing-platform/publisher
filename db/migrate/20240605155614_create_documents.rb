@@ -8,7 +8,5 @@ class CreateDocuments < ActiveRecord::Migration[7.1]
 
       t.index :content_id, unique: true
     end
-
-    
   end
 end

@@ -7,12 +7,13 @@ class Documents::CreateInteractor < ApplicationInteractor
            to: :context
   def call
     find_selection
-    
+
     check_for_issues
     create_document
   end
 
 private
+
   def find_selection
     context.document_types = DocumentType.all
     context.document_type = params[:document_type]
@@ -27,7 +28,7 @@ private
 
   def create_document
     context.document = CreateDocumentService.call(
-      document_type_id: document_type, user:
-    )    
+      document_type_id: document_type, user:,
+    )
   end
 end

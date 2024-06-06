@@ -26,7 +26,7 @@ module Requirements
     end
 
     def has_key?(field)
-      any? { |issue| issue.field == field}
+      any? { |issue| issue.field == field }
     end
   end
 end
