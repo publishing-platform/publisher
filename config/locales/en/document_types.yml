@@ -1,0 +1,10 @@
+en:
+  document_types:
+    default:
+      fields:
+        title_and_base_path:
+          label: Title
+        summary:
+          label: Summary
+        body:
+          label: Body        

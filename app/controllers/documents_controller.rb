@@ -4,6 +4,7 @@ class DocumentsController < ApplicationController
     @filter_params = filter_params
 
     filter_editions
+    order_editions
   end
 
   def show
@@ -11,6 +12,7 @@ class DocumentsController < ApplicationController
   end  
 
   def new 
+    @document_types = DocumentType.all
   end
 
   def create
@@ -20,7 +22,11 @@ class DocumentsController < ApplicationController
       redirect_to edition_path(result.document)
     else
       render :new,
-        assigns: { issues: result.issues, document_type_selection: result.document_type_selection },
+        assigns: { 
+          issues: result.issues, 
+          document_type: result.document_type, 
+          document_types: result.document_types 
+        },
         status: :unprocessable_entity
     end
   end
@@ -33,8 +39,12 @@ private
                             "%#{@filter_params[:title_or_url]}%", 
                             "%#{@filter_params[:title_or_url]}%") if @filter_params[:title_or_url].present?
     @editions = @editions.where(document_type_id: @filter_params[:document_type]) if @filter_params[:document_type].present?
-    @editions = @editions.where(state: @filter_params[:state]) if @filter_params[:state]
+    @editions = @editions.where(state: @filter_params[:state]) if @filter_params[:state].present?
   end
+
+  def order_editions
+    @editions = @editions.order(updated_at: :desc)
+  end  
 
   def filter_params
     params.permit(:title_or_url, :document_type, :state)

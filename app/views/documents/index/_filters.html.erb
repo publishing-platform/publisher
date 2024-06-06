@@ -5,10 +5,10 @@
   </div>   
 
   <div class="mb-3">
-    <% document_type_selections = t("document_type_selections").map { |d| [d[:label], d[:id]] } %>    
+    <% document_types = DocumentType.all.map { |d| [d.label, d.id] } %>    
     <%= label_tag :document_type, t("documents.index.filter.document_type"), class: "form-label" %>
     <%= select_tag :document_type, 
-      options_for_select(document_type_selections, @filter_params[:document_type]), 
+      options_for_select(document_types, @filter_params[:document_type]), 
       include_blank: true, 
       id: "document_type",
       class: "form-control" %>        
@@ -22,13 +22,13 @@
                               removed
                               failed_to_publish]
 
-      state_selections = selectable_states.map do |state|
+      states = selectable_states.map do |state|
         [t("user_facing_states.#{state}.name"), state]
       end
     %>    
     <%= label_tag :state, t("documents.index.filter.state"), class: "form-label" %>
     <%= select_tag :state, 
-      options_for_select(state_selections, @filter_params[:state]), 
+      options_for_select(states, @filter_params[:state]), 
       include_blank: true, 
       id: "state",
       class: "form-control" %>        

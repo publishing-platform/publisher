@@ -12,7 +12,7 @@
     <% @editions.each do |edition| %>
       <tr>
         <td><%= link_to edition.title_or_fallback, edition.document %></td>
-        <td><%= edition.document_type[:label] %></td>
+        <td><%= edition.document_type.label %></td>
         <td><%= t("user_facing_states.#{edition.state}.name") %></td>
         <td><%= edition.updated_at.to_fs(:time_on_date) %></td>
       </tr>

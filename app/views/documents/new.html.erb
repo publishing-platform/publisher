@@ -3,22 +3,22 @@
 
 <%= form_tag documents_path do %>
 
-  <% has_error = @issues&.has_key?(:document_type_selection) %>
+  <% has_error = @issues&.has_key?(:document_type) %>
 
-  <%= field_set_tag nil, aria: { describedby: has_error ? "document_type_selection-errors" : nil }, class: "mb-3" do %>
-    <% t("document_type_selections").each do |document_type_selection| %>
+  <%= field_set_tag nil, aria: { describedby: has_error ? "document_type-errors" : nil }, class: "mb-3" do %>
+    <% @document_types.each do |document_type| %>
       <%= tag.div class: "form-check #{(has_error ? "is-invalid" : nil)}" do %>
-        <%= radio_button_tag :document_type_selection, 
-            document_type_selection[:id],
-            document_type_selection[:id] == @document_type_selection,
+        <%= radio_button_tag :document_type, 
+            document_type.id,
+            document_type.id == @document_type,
             class: "form-check-input #{(has_error ? "is-invalid" : nil)}"  %>
 
-        <%= label_tag "document_type_selection_#{document_type_selection[:id]}", document_type_selection[:label], class: "form-check-label" %>
+        <%= label_tag "document_type_#{document_type.id}", document_type.label, class: "form-check-label" %>
       <% end %>
     <% end %>
 
     <%= render "components/errors", {
-      field: :document_type_selection
+      field: :document_type
     } %>    
   <% end %>
 

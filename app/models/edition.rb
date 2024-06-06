@@ -30,6 +30,6 @@ class Edition < ApplicationRecord
   end
   
   def document_type
-    I18n.t!("document_type_selections").find { |document_type_selection| document_type_selection[:id] == document_type_id }
+    DocumentType.find(document_type_id)
   end
 end

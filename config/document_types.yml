@@ -1,0 +1,16 @@
+---
+generic: &generic
+  contents:
+    - title_and_base_path
+    - summary
+    - body
+
+document_types:
+  - id: answer
+    label: Answer
+    metadata:
+      schema_name: answer
+      rendering_app: frontend
+    <<: *generic 
+    
+  
