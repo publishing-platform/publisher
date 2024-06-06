@@ -1,0 +1,13 @@
+
+<h2 class="h4"><%= t("documents.show.contents.title") %></h2>
+
+<dl>
+  <dt>Title</dt>
+  <dd><%= @edition.title %></dd>
+
+  <dt>Summary</dt>
+  <dd><%= @edition.summary %></dd>
+
+  <dt>Body</dt>
+  <dd><%= render "documents/show/contents/body_field" %></dd>    
+</dl>

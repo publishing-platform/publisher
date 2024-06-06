@@ -1,0 +1,8 @@
+<% content_for :title, @edition.title_or_fallback %>
+<% content_for :back_link, documents_path %>
+
+<div class="row">
+  <div class="col-xs-12 col-md-8">
+    <%= render "documents/show/contents" %>
+  </div>
+</div>

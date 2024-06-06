@@ -11,10 +11,10 @@
   <tbody>
     <% @editions.each do |edition| %>
       <tr>
-        <td><%= edition.title_or_fallback unless false %></td>
-        <td><%= edition.document_type.label unless false %></td>
-        <td></td>
-        <td><%= edition.last_edited_at.to_fs(:publishing_platform_date) unless false %></td>
+        <td><%= link_to edition.title_or_fallback, edition.document %></td>
+        <td><%= edition.document_type[:label] %></td>
+        <td><%= t("user_facing_states.#{edition.state}.name") %></td>
+        <td><%= edition.updated_at.to_fs(:time_on_date) %></td>
       </tr>
     <% end %>
   </tbody>

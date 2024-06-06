@@ -1,20 +1,42 @@
 class DocumentsController < ApplicationController
   def index
-    @editions = []
+    @editions = Edition.all
+    @filter_params = filter_params
+
+    filter_editions
   end
 
-  def new    
+  def show
+    @edition = Edition.find_current(params[:id])
+  end  
+
+  def new 
   end
 
   def create
-    issues = Requirements::Issues.new
+    result = Documents::CreateInteractor.call(params:, user: current_user)
 
-    if(!params[:document_type_selection])
-      issues.create(:document_type_selection, :not_selected)
-      
+    if result.success?
+      redirect_to edition_path(result.document)
+    else
       render :new,
-        assigns: { issues: },
-        status: :unprocessable_entity      
+        assigns: { issues: result.issues, document_type_selection: result.document_type_selection },
+        status: :unprocessable_entity
     end
+  end
+
+private
+
+  def filter_editions
+    @editions = Edition.where(current: true)
+    @editions = @editions.where("editions.title like ? OR editions.base_path like ?", 
+                            "%#{@filter_params[:title_or_url]}%", 
+                            "%#{@filter_params[:title_or_url]}%") if @filter_params[:title_or_url].present?
+    @editions = @editions.where(document_type_id: @filter_params[:document_type]) if @filter_params[:document_type].present?
+    @editions = @editions.where(state: @filter_params[:state]) if @filter_params[:state]
+  end
+
+  def filter_params
+    params.permit(:title_or_url, :document_type, :state)
   end
 end

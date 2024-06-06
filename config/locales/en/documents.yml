@@ -1,6 +1,14 @@
 en:
   documents:
+    untitled_document: Untitled document
     index:
-      title: "Documents"
+      title: Documents
+      filter:
+        title_or_url: Title or URL
+        document_type: Document type
+        state: Status
     new:
-      title: "What is the content for?"
+      title: What is the content for?
+    show:
+      contents:
+        title: Content

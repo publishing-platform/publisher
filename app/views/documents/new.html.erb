@@ -10,6 +10,7 @@
       <%= tag.div class: "form-check #{(has_error ? "is-invalid" : nil)}" do %>
         <%= radio_button_tag :document_type_selection, 
             document_type_selection[:id],
+            document_type_selection[:id] == @document_type_selection,
             class: "form-check-input #{(has_error ? "is-invalid" : nil)}"  %>
 
         <%= label_tag "document_type_selection_#{document_type_selection[:id]}", document_type_selection[:label], class: "form-check-label" %>
