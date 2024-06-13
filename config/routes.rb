@@ -3,9 +3,13 @@ Rails.application.routes.draw do
 
   resources :documents, only: %i[index new create]
 
-  scope "/documents/:id" do
+  scope "/documents/:document_id" do
     get "" => "documents#show", as: :document
     get "/edition" => "editions#edit"
+
+    get "/publish" => "publish#confirmation", as: :publish_confirmation
+    post "/publish" => "publish#publish"
+    get "/published" => "publish#published", as: :published    
   end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

@@ -1,0 +1,33 @@
+<% content_for :title, t("publish.confirmation.title") %>
+<% content_for :back_link, document_path(@edition.document) %>
+
+<%= form_tag publish_path(@edition.document) do %>
+
+  <% has_error = @issues&.has_key?(:review_status) %>
+
+  <%= field_set_tag nil, aria: { describedby: has_error ? "review_status-errors" : nil }, class: "mb-3" do %>
+    <%= tag.div class: "form-check #{(has_error ? "is-invalid" : nil)}" do %>
+      <%= radio_button_tag :review_status, 
+          "reviewed",
+          false,
+          class: "form-check-input #{(has_error ? "is-invalid" : nil)}"  %>
+
+      <%= label_tag "review_status_reviewed", t("publish.confirmation.has_been_reviewed"), class: "form-check-label" %>
+    <% end %>
+
+    <%= tag.div class: "form-check #{(has_error ? "is-invalid" : nil)}" do %>
+      <%= radio_button_tag :review_status, 
+          "published_without_review",
+          false,
+          class: "form-check-input #{(has_error ? "is-invalid" : nil)}"  %>
+
+      <%= label_tag "review_status_published_without_review", t("publish.confirmation.should_be_reviewed"), class: "form-check-label" %>
+    <% end %>    
+
+    <%= render "components/errors", {
+      field: :review_status
+    } %>    
+  <% end %>
+
+  <%= submit_tag "Confirm publish", class: "btn btn-primary" %>   
+<% end %>

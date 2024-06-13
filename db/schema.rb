@@ -16,6 +16,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_05_163337) do
 
   create_table "documents", force: :cascade do |t|
     t.uuid "content_id", null: false
+    t.datetime "first_published_at", precision: nil
     t.bigint "created_by_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -24,6 +25,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_05_163337) do
   end
 
   create_table "editions", force: :cascade do |t|
+    t.integer "number", null: false
     t.string "title"
     t.string "base_path"
     t.text "summary"
@@ -31,6 +33,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_05_163337) do
     t.string "document_type_id", null: false
     t.string "state", null: false
     t.boolean "current", default: false, null: false
+    t.boolean "live", default: false, null: false
     t.datetime "published_at", precision: nil
     t.bigint "created_by_id", null: false
     t.bigint "last_edited_by_id", null: false

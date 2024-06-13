@@ -10,7 +10,22 @@
   }
 }
 
+.btn {
+  @include media-breakpoint-down(sm) {
+    width: 100%;
+  }  
+}
+
 .formatted-text {
   margin: 0;
   white-space: pre-wrap;
+}
+
+.app-side {
+}
+
+.app-side__actions {
+  .btn {
+    width: 100%;
+  }
 }

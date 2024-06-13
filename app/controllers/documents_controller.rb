@@ -8,7 +8,7 @@ class DocumentsController < ApplicationController
   end
 
   def show
-    @edition = Edition.find_current(params[:id])
+    @edition = Edition.find_current(params[:document_id])
   end
 
   def new
@@ -21,6 +21,7 @@ class DocumentsController < ApplicationController
     if result.success?
       redirect_to edition_path(result.document)
     else
+      flash.now["requirements"] = { "items" => result.issues.items}
       render :new,
              assigns: {
                issues: result.issues,

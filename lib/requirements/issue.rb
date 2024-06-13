@@ -8,8 +8,18 @@ module Requirements
       @context = context
     end
 
-    def message
-      I18n.t("requirements.#{field}.#{issue_key}.message", **context)
+    def message(style:)
+      I18n.t("requirements.#{field}.#{issue_key}.#{style}_message", **context)
     end
+
+    def to_item(link_options: {}, style: "form")
+      link_options = link_options.call(context) if link_options.is_a?(Proc)
+
+      {
+        text: message(style:),
+        href: link_options[:href],
+        target: link_options[:target],
+      }
+    end    
   end
 end

@@ -1,6 +1,7 @@
 class CreateEditions < ActiveRecord::Migration[7.1]
   def change
     create_table :editions do |t|
+      t.integer :number, null: false
       t.string :title
       t.string :base_path
       t.text :summary
@@ -8,6 +9,7 @@ class CreateEditions < ActiveRecord::Migration[7.1]
       t.string :document_type_id, null: false
       t.string :state, null: false
       t.boolean :current, default: false, null: false
+      t.boolean :live, default: false, null: false
       t.datetime :published_at, precision: nil
 
       t.references :created_by, null: false, foreign_key: { to_table: :users, on_delete: :restrict }

@@ -34,6 +34,17 @@
           <p class="alert alert-danger"><%= alert %></p>
         <% end %>  
 
+        <% if flash["requirements"].present? %>
+          <% items = flash["requirements"]["message"] ?
+            [{ text: flash["requirements"]["message"] }] :
+            flash["requirements"]["items"].map(&:symbolize_keys) %> 
+
+            <%= render "components/error_summary", {
+              title: t("documents.flashes.requirements"),
+              items:
+            } %>                
+        <% end %>             
+
         <div class="row">
           <div class="col-xs-12 <%= yield(:top_right).present? ? 'col-md-6' : 'col-md-8' %>">
             <div class="pb-md-4">

@@ -2,4 +2,7 @@ en:
   requirements:
     document_type:
       not_selected:
-        message: Select a document type
+        form_message: Select a document type
+    review_status:
+      not_selected:
+        form_message: Select an option        
