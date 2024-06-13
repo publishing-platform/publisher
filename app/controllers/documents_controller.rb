@@ -21,7 +21,7 @@ class DocumentsController < ApplicationController
     if result.success?
       redirect_to edition_path(result.document)
     else
-      flash.now["requirements"] = { "items" => result.issues.items}
+      flash.now["requirements"] = { "items" => result.issues.items }
       render :new,
              assigns: {
                issues: result.issues,

@@ -15,10 +15,10 @@ class PublishDraftEditionService
     publish_current_edition
     supersede_live_edition
     set_new_live_edition
-  # TODO
-  # rescue GdsApi::BaseError => e
-  #   GovukError.notify(e)
-  #   raise
+    # TODO
+    # rescue GdsApi::BaseError => e
+    #   GovukError.notify(e)
+    #   raise
   end
 
 private

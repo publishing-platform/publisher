@@ -18,6 +18,5 @@ private
     assert_edition_state(edition, &:editable?)
   end
 
-  def check_for_issues
-  end  
+  def check_for_issues; end
 end

@@ -30,7 +30,7 @@ private
       created_by: user,
       current: true,
       last_edited_by: user,
-      number: 1
+      number: 1,
     )
 
     edition.save!

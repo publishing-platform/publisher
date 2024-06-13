@@ -5,5 +5,5 @@ class DocumentType::TitleAndBasePathField
 
   def publish_issues(_edition)
     Requirements::Issues.new
-  end    
+  end
 end

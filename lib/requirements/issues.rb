@@ -36,6 +36,6 @@ module Requirements
       link_options = params.dig(:link_options, issue.field) || {}
 
       params.slice(:style).merge(link_options:)
-    end    
+    end
   end
 end

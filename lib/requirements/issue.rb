@@ -20,6 +20,6 @@ module Requirements
         href: link_options[:href],
         target: link_options[:target],
       }
-    end    
+    end
   end
 end

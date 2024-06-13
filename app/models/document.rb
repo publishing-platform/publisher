@@ -22,5 +22,5 @@ class Document < ApplicationRecord
 
   def next_edition_number
     (editions.maximum(:number) || 0) + 1
-  end  
+  end
 end

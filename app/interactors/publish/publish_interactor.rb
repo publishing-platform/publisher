@@ -38,8 +38,8 @@ private
 
   def publish_edition
     PublishDraftEditionService.call(edition, user, with_review: with_review?)
-  # TODO
-  # rescue GdsApi::BaseError
-  #   context.fail!(publish_failed: true)
+    # TODO
+    # rescue GdsApi::BaseError
+    #   context.fail!(publish_failed: true)
   end
 end

@@ -44,9 +44,9 @@ class Edition < ApplicationRecord
 
   def editable?
     !live?
-  end  
+  end
 
   def first?
     number == 1
-  end  
+  end
 end
