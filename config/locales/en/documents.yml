@@ -1,6 +1,7 @@
 en:
   documents:
     untitled_document: Untitled document
+    unknown_user: Unknown user
     index:
       title: Documents
       filter:
@@ -13,6 +14,15 @@ en:
       contents:
         title: Content
       flashes:
-        publish_error: Something went wrong when publishing. Please try again.        
+        pre_publish_issues:
+          error: Before you can publish this document you need to      
+        publish_error: Something went wrong when publishing. Please try again.    
+      metadata:
+        status: Status
+        updated_at: Last updated
+        created_at: Created
+        created_by: Document created by
+        last_edited_by: Last edited by
+        withdrawn_by: Withdrawn by            
     flashes:
       requirements: You need to

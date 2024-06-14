@@ -40,7 +40,7 @@
             flash["requirements"]["items"].map(&:symbolize_keys) %> 
 
             <%= render "components/error_summary", {
-              title: t("documents.flashes.requirements"),
+              title: flash["requirements"]["title"] || t("documents.flashes.requirements"),
               items:
             } %>                
         <% end %>             

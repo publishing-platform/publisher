@@ -23,4 +23,10 @@ class Document < ApplicationRecord
   def next_edition_number
     (editions.maximum(:number) || 0) + 1
   end
+
+  def newly_created?
+    return false if !current_edition || !current_edition.first?
+
+    current_edition.created_at == current_edition.updated_at
+  end  
 end

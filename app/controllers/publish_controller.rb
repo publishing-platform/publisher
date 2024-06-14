@@ -1,7 +1,24 @@
 class PublishController < ApplicationController
   def confirmation
     result = Publish::ConfirmationInteractor.call(params:, user: current_user)
-    @edition = result.edition
+    @edition, issues = result.to_h.values_at(:edition,
+                                             :issues)
+
+    if issues
+      issue_params = {
+        style: "summary",
+        link_options: {
+          title: { href: edition_path(@edition.document, anchor: "title-field") },
+          summary: { href: edition_path(@edition.document, anchor: "summary-field") },
+          body: { href: edition_path(@edition.document, anchor: "body-field") }
+        } 
+      }     
+      flash["requirements"] = { 
+        "title" => t("documents.show.flashes.pre_publish_issues.error"), 
+        "items" => issues.items(issue_params) 
+      }
+      redirect_to document_path(@edition.document)
+    end
   end
 
   def publish
@@ -25,9 +42,9 @@ class PublishController < ApplicationController
   end
 
   def published
-    @edition = Edition.find_current(document: params[:document])
+    @edition = Edition.find_current(params[:document_id])
     assert_edition_state(@edition, assertion: "is published") do
       @edition.published? || @edition.published_but_needs_2i?
-    end
+    end    
   end
 end

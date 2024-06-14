@@ -4,7 +4,8 @@ class DocumentType
   attr_reader :id,
               :label,
               :contents,
-              :metadata
+              :metadata,
+              :path_prefix
 
   # class-level method
   def self.find(id)

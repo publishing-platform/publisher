@@ -1,8 +1,12 @@
-<h2 class="h4"><%= t("documents.show.contents.title") %></h2>
-
+<h2 class="h4 d-md-inline-block"><%= t("documents.show.contents.title") %></h2>
+<% if @edition.editable? %>
+  <%= tag.div class: %w(float-md-end mb-3) do %>
+    <%= edit_link(@edition) %> 
+  <% end %>   
+<% end %>
 <dl>
   <% @edition.document_type.contents.each do |field| %>
-    <dt><%= t_doctype_field(@edition, "#{field.id}.label") %></dt>
-    <dd><%= render("documents/show/contents/#{field.id}_field", edition: @edition) %></dd>
+    <dt class="mb-2"><%= t_doctype_field(@edition, "#{field.id}.label") %></dt>
+    <dd class="mb-3"><%= render("documents/show/contents/#{field.id}_field", edition: @edition) %></dd>
   <% end %>
 </dl>

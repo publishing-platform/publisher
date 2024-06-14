@@ -3,15 +3,10 @@
 
 <div class="row">
   <div class="col-xs-12 col-md-4">
-    <div class="app-side">
-      <div class="app-side__actions">
-        <% if @edition.draft? %>
-          <%= publish_link(@edition) %>  
-        <% end %>
-      </div>
-    </div>    
+    <%= render "documents/show/actions" %>
+    <%= render "documents/show/document_metadata" %>
   </div>  
   <div class="col-xs-12 col-md-8">
-    <%= render "documents/show/contents" %>
+    <%= render "documents/show/contents" %>    
   </div>
 </div>

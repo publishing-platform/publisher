@@ -18,5 +18,8 @@ private
     assert_edition_state(edition, &:editable?)
   end
 
-  def check_for_issues; end
+  def check_for_issues
+    issues = Requirements::Publish::EditionChecker.call(edition)
+    context.fail!(issues:) if issues.any?    
+  end
 end

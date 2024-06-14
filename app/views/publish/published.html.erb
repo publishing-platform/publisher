@@ -1,0 +1,47 @@
+<% content_for :title, t("publish.published.title") %>
+
+<% if @edition.published_but_needs_2i? %>
+  <% content_for :back_link, document_path(@edition.document) %>
+<% else %>
+  <% content_for :back_link, documents_path %>
+<% end %>
+
+<% public_url = edition_public_url(@edition) %>
+<% published_edition_link = capture do %>
+  <div class="alert alert-light">
+    <%= link_to strip_scheme_from_url(public_url), public_url %>
+  </div>
+<% end %>
+
+<div class="row">
+  <div class="col-xs-12 col-md-8">
+
+    <% if @edition.published_but_needs_2i? %>
+      <div class="alert alert-primary" role="alert">
+        <%= t("publish.published.published_without_review.title") %>
+      </div>
+
+      <%= render_markdown(t("publish.published.published_without_review.body_markdown", title: @edition.title)) %>
+
+      <%= published_edition_link %>
+
+      <%= render_markdown(t("publish.published.published_without_review.what_to_do_markdown")) %>
+
+      <div data-module="copy-to-clipboard">
+        <div class="mb-3">
+          <%= label_tag :url, t("publish.published.published_without_review.send_label"), class: "form-label" %> 
+          <%= text_field_tag :url, document_url(@edition.document), class: "form-control copy-to-clipboard-target", readonly: true %> 
+        </div>
+        <%= button_tag "Copy link", class: "btn btn-secondary copy-to-clipboard-button" %> 
+      </div>     
+    <% else %>
+      <div class="alert alert-primary" role="alert">
+        <%= t("publish.published.reviewed.title") %>
+      </div>
+
+      <%= render_markdown(t("publish.published.reviewed.body_markdown", title: @edition.title)) %>
+
+      <%= published_edition_link %>
+    <% end %>
+  </div>
+</div>

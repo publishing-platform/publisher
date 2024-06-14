@@ -3,7 +3,18 @@ class DocumentType::BodyField
     "body"
   end
 
-  def publish_issues(_edition)
+  def updater_params(_edition, params)
+    { contents: { body: params[:body] } }
+  end  
+
+  def form_issues(edition, params)
     Requirements::Issues.new
+  end  
+
+  def publish_issues(edition)
+    issues = Requirements::Issues.new
+
+    issues.create(id, :blank) if edition.contents[id].blank?
+    issues    
   end
 end
