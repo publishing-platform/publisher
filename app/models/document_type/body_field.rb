@@ -5,16 +5,16 @@ class DocumentType::BodyField
 
   def updater_params(_edition, params)
     { contents: { body: params[:body] } }
-  end  
+  end
 
-  def form_issues(edition, params)
+  def form_issues(_edition, _params)
     Requirements::Issues.new
-  end  
+  end
 
   def publish_issues(edition)
     issues = Requirements::Issues.new
 
     issues.create(id, :blank) if edition.contents[id].blank?
-    issues    
+    issues
   end
 end

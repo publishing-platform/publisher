@@ -37,7 +37,7 @@ class DocumentsController < ApplicationController
     assert_edition_state(edition, &:editable?)
     base_path = GenerateBasePathService.call(edition, title: params[:title])
     render plain: base_path
-  end  
+  end
 
 private
 

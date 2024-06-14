@@ -31,7 +31,7 @@ private
   end
 
   def update_edition
-    puts content_params
+    Rails.logger.debug content_params
     EditDraftEditionService.call(edition, user, content_params)
     edition.save!
   end

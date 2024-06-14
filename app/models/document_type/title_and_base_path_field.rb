@@ -9,9 +9,9 @@ class DocumentType::TitleAndBasePathField
     title = params[:title]&.strip
     base_path = GenerateBasePathService.call(edition, title:)
     { title:, base_path: }
-  end  
+  end
 
-  def form_issues(edition, params)
+  def form_issues(_edition, params)
     issues = Requirements::Issues.new
 
     if params[:title].blank?
@@ -36,13 +36,13 @@ class DocumentType::TitleAndBasePathField
     # end
 
     issues
-  end  
+  end
 
   def publish_issues(_edition)
     Requirements::Issues.new
   end
 
-  private
+private
 
   def base_path_conflict?(edition, params)
     # TODO
@@ -54,5 +54,5 @@ class DocumentType::TitleAndBasePathField
     # )
 
     # base_path_owner && base_path_owner != edition.content_id
-  end  
+  end
 end

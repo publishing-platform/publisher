@@ -20,6 +20,6 @@ private
 
   def check_for_issues
     issues = Requirements::Publish::EditionChecker.call(edition)
-    context.fail!(issues:) if issues.any?    
+    context.fail!(issues:) if issues.any?
   end
 end

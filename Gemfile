@@ -8,7 +8,7 @@ gem "bootsnap", require: false
 gem "interactor"
 gem "jbuilder"
 gem "jsbundling-rails"
-gem 'kramdown', '~> 2.4'
+gem "kramdown", "~> 2.4"
 gem "pg", "~> 1.1"
 gem "publishing_platform_sso"
 gem "puma", ">= 5.0"

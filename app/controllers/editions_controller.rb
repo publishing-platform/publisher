@@ -1,7 +1,7 @@
 class EditionsController < ApplicationController
-  def edit    
+  def edit
     @edition = Edition.find_current(params[:document_id])
-    puts issues_link_options(@edition)
+    Rails.logger.debug issues_link_options(@edition)
     assert_edition_state(@edition, &:editable?)
   end
 
@@ -20,7 +20,7 @@ class EditionsController < ApplicationController
     else
       redirect_to edition.document
     end
-  end  
+  end
 
 private
 

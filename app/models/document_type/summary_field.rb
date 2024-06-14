@@ -7,7 +7,7 @@ class DocumentType::SummaryField
 
   def updater_params(_edition, params)
     { summary: params[:summary]&.strip }
-  end  
+  end
 
   def form_issues(_edition, params)
     issues = Requirements::Issues.new
@@ -20,12 +20,12 @@ class DocumentType::SummaryField
       issues.create(:summary, :multiline)
     end
 
-    issues    
-  end  
+    issues
+  end
 
   def publish_issues(edition)
     issues = Requirements::Issues.new
     issues.create(:summary, :blank) if edition.summary.blank?
-    issues    
+    issues
   end
 end

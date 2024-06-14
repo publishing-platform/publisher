@@ -9,21 +9,21 @@ module ActionsHelper
     link_to "Edit",
             edition_path(edition.document),
             class: (extra_classes.present? ? Array(extra_classes) : nil)
-  end  
+  end
 
   def submit_for_2i_button(edition, secondary: false)
     btn_class = secondary ? "btn-secondary" : "btn-primary"
 
     form_tag submit_for_2i_path(edition.document), class: "mb-3" do
       submit_tag "Submit for 2i review", class: %w[btn] + Array(btn_class)
-    end  
+    end
   end
 
   def delete_draft_link(edition, extra_classes = [])
     link_to "Delete draft",
             confirm_delete_draft_path(edition.document),
             class: %w[link-danger] + Array(extra_classes)
-  end  
+  end
 
   def create_edition_button(edition, secondary: false)
     btn_class = secondary ? "btn-secondary" : "btn-primary"
@@ -32,19 +32,19 @@ module ActionsHelper
              class: "mb-3" do
       submit_tag "Create new edition", class: %w[btn] + Array(btn_class)
     end
-  end  
+  end
 
   def withdraw_link(edition, extra_classes = [])
     link_to "Withdraw",
             withdraw_path(edition.document),
             class: (extra_classes.present? ? Array(extra_classes) : nil)
-  end  
+  end
 
   def remove_link(edition, extra_classes = [])
     link_to "Remove",
             remove_path(edition.document),
-            class:  %w[link-danger] + Array(extra_classes)
-  end  
+            class: %w[link-danger] + Array(extra_classes)
+  end
 
   def approve_button(edition, secondary: false)
     btn_class = secondary ? "btn-secondary" : "btn-primary"
@@ -53,11 +53,11 @@ module ActionsHelper
              class: "mb-3" do
       submit_tag "Approve", class: %w[btn] + Array(btn_class)
     end
-  end  
+  end
 
   def undo_withdraw_link(edition, extra_classes = [])
     link_to "Undo withdrawal",
             unwithdraw_path(edition.document),
             class: (extra_classes.present? ? Array(extra_classes) : nil)
-  end  
+  end
 end

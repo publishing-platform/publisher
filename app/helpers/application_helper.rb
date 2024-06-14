@@ -1,7 +1,7 @@
 module ApplicationHelper
   def strip_scheme_from_url(url)
     url.sub(/^https?:\/\//, "")
-  end  
+  end
 
   def render_markdown(content)
     raw(Kramdown::Document.new(content).to_html)
@@ -9,5 +9,5 @@ module ApplicationHelper
 
   def name_or_fallback(user)
     user&.name || I18n.t("documents.unknown_user")
-  end  
+  end
 end

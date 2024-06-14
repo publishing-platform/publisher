@@ -28,5 +28,5 @@ class Document < ApplicationRecord
     return false if !current_edition || !current_edition.first?
 
     current_edition.created_at == current_edition.updated_at
-  end  
+  end
 end
