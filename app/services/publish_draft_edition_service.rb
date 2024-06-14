@@ -50,6 +50,7 @@ private
 
     edition.state = state
     edition.live = true
+    edition.last_edited_by = user
     edition.save!
     document.reload_live_edition
   end

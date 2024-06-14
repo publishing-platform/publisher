@@ -28,10 +28,8 @@ private
     format_specific_options = edition.document_type.contents.each_with_object({}) do |field, memo|
       memo[field.id.to_sym] = { href: "##{field.id}-field" }
     end
-
     {
       title: { href: "#title-field" },
-      summary: { href: "#summary-field" },
     }.merge(Hash[format_specific_options])
   end
 end

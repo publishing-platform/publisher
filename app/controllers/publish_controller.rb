@@ -4,18 +4,10 @@ class PublishController < ApplicationController
     @edition, issues = result.to_h.values_at(:edition,
                                              :issues)
 
-    if issues
-      issue_params = {
-        style: "summary",
-        link_options: {
-          title: { href: edition_path(@edition.document, anchor: "title-field") },
-          summary: { href: edition_path(@edition.document, anchor: "summary-field") },
-          body: { href: edition_path(@edition.document, anchor: "body-field") },
-        },
-      }
+    if issues      
       flash["requirements"] = {
         "title" => t("documents.show.flashes.pre_publish_issues.error"),
-        "items" => issues.items(issue_params),
+        "items" => issues.items(style: "summary", link_options: issues_link_options(@edition))
       }
       redirect_to document_path(@edition.document)
     end
@@ -47,4 +39,15 @@ class PublishController < ApplicationController
       @edition.published? || @edition.published_but_needs_2i?
     end
   end
+
+private
+
+  def issues_link_options(edition)
+    format_specific_options = edition.document_type.contents.each_with_object({}) do |field, memo|
+      memo[field.id.to_sym] = { href: edition_path(edition.document, anchor: "#{field.id}-field") }
+    end
+    {
+      title: { href: edition_path(edition.document, anchor: "title-field") },
+    }.merge(Hash[format_specific_options])    
+  end  
 end

@@ -17,6 +17,7 @@ en:
         pre_publish_issues:
           error: Before you can publish this document you need to      
         publish_error: Something went wrong when publishing. Please try again.    
+        approved: Content has been reviewed and approved
       metadata:
         status: Status
         updated_at: Last updated
