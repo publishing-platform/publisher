@@ -22,6 +22,22 @@ class EditionsController < ApplicationController
     end
   end
 
+  def confirm_delete_draft
+    @edition = Edition.find_current(params[:document_id])
+    assert_edition_state(@edition, &:editable?)
+  end  
+
+  def destroy_draft
+    result = Editions::DestroyInteractor.call(params:, user: current_user)
+
+    if result.api_error
+      redirect_to document_path(params[:document]),
+                  alert: t("documents.show.flashes.delete_draft_error")
+    else
+      redirect_to documents_path
+    end
+  end  
+
 private
 
   def issues_link_options(edition)
