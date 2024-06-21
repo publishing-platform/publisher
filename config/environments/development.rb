@@ -70,4 +70,6 @@ Rails.application.configure do
 
   # Allow requests for all domains e.g. <app>.dev.publishing-platform.co.uk
   config.hosts.clear
+
+  credentials.jwt_auth_secret = ENV.fetch("JWT_AUTH_SECRET", "secret")
 end

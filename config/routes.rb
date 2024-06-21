@@ -13,6 +13,9 @@ Rails.application.routes.draw do
     delete "/draft" => "editions#destroy_draft", as: :destroy_draft
     get "/delete-draft" => "editions#confirm_delete_draft", as: :confirm_delete_draft
 
+    get "/preview" => "preview#show", as: :preview_document
+    post "/preview" => "preview#create"    
+
     get "/publish" => "publish#confirmation", as: :publish_confirmation
     post "/publish" => "publish#publish"
     get "/published" => "publish#published", as: :published

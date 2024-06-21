@@ -93,4 +93,6 @@ Rails.application.configure do
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
+
+  credentials.jwt_auth_secret = ENV["JWT_AUTH_SECRET"]
 end

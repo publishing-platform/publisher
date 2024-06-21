@@ -24,11 +24,9 @@ class Edition < ApplicationRecord
                 superseded: "superseded",
                 failed_to_publish: "failed_to_publish" }
 
-  # states.keys.each |state| do
-  #   define_method("#{state}?") do
-  #     role == role_name
-  #   end
-  # end
+  attribute :auth_bypass_id, default: -> { SecureRandom.uuid }
+
+  delegate :content_id, to: :document
 
   def title_or_fallback
     title.presence || I18n.t!("documents.untitled_document")
@@ -49,4 +47,17 @@ class Edition < ApplicationRecord
   def first?
     number == 1
   end
+
+  def auth_bypass_token
+    JWT.encode(
+      {
+        "sub" => auth_bypass_id,
+        "content_id" => content_id,
+        "iat" => Time.zone.now.to_i,
+        "exp" => 1.month.from_now.to_i,
+      },
+      Rails.application.credentials.jwt_auth_secret,
+      "HS256",
+    )
+  end  
 end
