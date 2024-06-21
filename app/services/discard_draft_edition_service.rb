@@ -28,7 +28,7 @@ private
   end
 
   def discard_draft(edition)
-    # TODO - also need to put_content. GOV.UK are using preview service for this
+    # TODO: - also need to put_content. GOV.UK are using preview service for this
     # begin
     #   GdsApi.publishing_api.discard_draft(edition.content_id)
     # rescue GdsApi::HTTPNotFound

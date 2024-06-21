@@ -4,10 +4,10 @@ class PublishController < ApplicationController
     @edition, issues = result.to_h.values_at(:edition,
                                              :issues)
 
-    if issues      
+    if issues
       flash["requirements"] = {
         "title" => t("documents.show.flashes.pre_publish_issues.error"),
-        "items" => issues.items(style: "summary", link_options: issues_link_options(@edition))
+        "items" => issues.items(style: "summary", link_options: issues_link_options(@edition)),
       }
       redirect_to document_path(@edition.document)
     end
@@ -48,6 +48,6 @@ private
     end
     {
       title: { href: edition_path(edition.document, anchor: "title-field") },
-    }.merge(Hash[format_specific_options])    
-  end  
+    }.merge(Hash[format_specific_options])
+  end
 end

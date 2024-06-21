@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     get "/delete-draft" => "editions#confirm_delete_draft", as: :confirm_delete_draft
 
     get "/preview" => "preview#show", as: :preview_document
-    post "/preview" => "preview#create"    
+    post "/preview" => "preview#create"
 
     get "/publish" => "publish#confirmation", as: :publish_confirmation
     post "/publish" => "publish#publish"

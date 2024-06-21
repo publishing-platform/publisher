@@ -25,7 +25,7 @@ class EditionsController < ApplicationController
   def confirm_delete_draft
     @edition = Edition.find_current(params[:document_id])
     assert_edition_state(@edition, &:editable?)
-  end  
+  end
 
   def destroy_draft
     result = Editions::DestroyInteractor.call(params:, user: current_user)
@@ -36,7 +36,7 @@ class EditionsController < ApplicationController
     else
       redirect_to documents_path
     end
-  end  
+  end
 
 private
 

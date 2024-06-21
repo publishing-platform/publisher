@@ -59,5 +59,5 @@ class Edition < ApplicationRecord
       Rails.application.credentials.jwt_auth_secret,
       "HS256",
     )
-  end  
+  end
 end

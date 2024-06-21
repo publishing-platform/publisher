@@ -5,10 +5,10 @@ class ReviewController < ApplicationController
 
     if issues
       flash["requirements"] = {
-        "items" => issues.items(style: "summary", link_options: issues_link_options(edition))
-      }      
-    end  
-    
+        "items" => issues.items(style: "summary", link_options: issues_link_options(edition)),
+      }
+    end
+
     redirect_to document_path(params[:document_id])
   end
 
@@ -27,6 +27,6 @@ private
     end
     {
       title: { href: edition_path(edition.document, anchor: "title-field") },
-    }.merge(Hash[format_specific_options])    
-  end  
+    }.merge(Hash[format_specific_options])
+  end
 end
