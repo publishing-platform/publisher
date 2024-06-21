@@ -12,7 +12,7 @@ class DiscardDraftEditionService
 
     discard_draft(edition)
     reset_live_edition if document.live_edition
-    # DiscardPathReservationsService.call(edition) if edition.first? # TODO?? - might need this for path reservations
+    # DiscardPathReservationsService.call(edition) if edition.first? # TODO?? - might need this for path reservations - don't think this is needed nh 21/06/2024
     document.reload_current_edition
   end
 
@@ -28,7 +28,7 @@ private
   end
 
   def discard_draft(edition)
-    # TODO: - also need to put_content. GOV.UK are using preview service for this
+    # TODO:
     # begin
     #   GdsApi.publishing_api.discard_draft(edition.content_id)
     # rescue GdsApi::HTTPNotFound

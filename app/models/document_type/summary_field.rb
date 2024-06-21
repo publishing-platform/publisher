@@ -23,6 +23,10 @@ class DocumentType::SummaryField
     issues
   end
 
+  def preview_issues(_edition)
+    Requirements::Issues.new
+  end    
+
   def publish_issues(edition)
     issues = Requirements::Issues.new
     issues.create(:summary, :blank) if edition.summary.blank?

@@ -60,4 +60,19 @@ module ActionsHelper
             unwithdraw_path(edition.document),
             class: (extra_classes.present? ? Array(extra_classes) : nil)
   end
+
+  def create_preview_button(edition, secondary: false)
+    btn_class = secondary ? "btn-secondary" : "btn-primary"
+
+    form_tag preview_document_path(edition.document),
+             class: "mb-3" do
+      submit_tag "Preview", class: %w[btn] + Array(btn_class)
+    end
+  end  
+
+  def preview_link(edition, extra_classes = [])
+    link_to "Preview",
+            preview_document_path(edition.document),
+            class: (extra_classes.present? ? Array(extra_classes) : nil)
+  end  
 end

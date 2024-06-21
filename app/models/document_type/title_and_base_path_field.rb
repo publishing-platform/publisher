@@ -38,6 +38,12 @@ class DocumentType::TitleAndBasePathField
     issues
   end
 
+  def preview_issues(edition)
+    issues = Requirements::Issues.new
+    issues.create(:title, :blank) if edition.title.blank?
+    issues
+  end  
+
   def publish_issues(_edition)
     Requirements::Issues.new
   end

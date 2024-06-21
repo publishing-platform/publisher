@@ -11,6 +11,10 @@ class DocumentType::BodyField
     Requirements::Issues.new
   end
 
+  def preview_issues(_edition)
+    Requirements::Issues.new
+  end  
+
   def publish_issues(edition)
     issues = Requirements::Issues.new
 
