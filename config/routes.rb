@@ -31,7 +31,8 @@ Rails.application.routes.draw do
     get "/unwithdraw" => "unwithdraw#confirm", as: :unwithdraw
     post "/unwithdraw" => "unwithdraw#unwithdraw"
 
-    get "/remove" => "remove#remove", as: :remove
+    get "/remove" => "remove#new", as: :remove
+    post "/remove" => "remove#create"
   end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
