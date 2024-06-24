@@ -1,7 +1,11 @@
 class EditionsController < ApplicationController
+  def create
+    Editions::CreateInteractor.call(params:, user: current_user)
+    redirect_to edition_path(params[:document_id])
+  end
+
   def edit
     @edition = Edition.find_current(params[:document_id])
-    Rails.logger.debug issues_link_options(@edition)
     assert_edition_state(@edition, &:editable?)
   end
 
