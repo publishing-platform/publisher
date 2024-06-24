@@ -25,4 +25,7 @@ en:
         form_message: Remove line breaks from the summary   
     body:
       blank:
-        summary_message: Enter a body     
+        summary_message: Enter a body  
+    redirect_url:
+      invalid:
+        form_message: Redirect path is invalid

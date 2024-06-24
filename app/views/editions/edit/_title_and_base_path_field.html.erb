@@ -1,6 +1,6 @@
 <% has_error = issues&.has_key?(:title) %>
 
-<%= label_tag :title, t("editions.edit.form_labels.title"), class: "form-label" %>
+<%= label_tag "title-field", t("editions.edit.form_labels.title"), class: "form-label" %>
 <%= text_area_tag :title,
       params[:title] || edition.title,
       id: "title-field",

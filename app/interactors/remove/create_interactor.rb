@@ -1,10 +1,9 @@
-class Withdraw::CreateInteractor < ApplicationInteractor
+class Remove::CreateInteractor < ApplicationInteractor
   delegate :params,
            :user,
            :edition,
            :issues,
            :api_error,
-           :already_removed,
            to: :context
 
   def call
@@ -26,22 +25,22 @@ private
   end
 
   def check_for_issues
-    issues = Requirements::Form::RemovalChecker.call(edition, params[:public_explanation])
+    issues = Requirements::Form::RemovalChecker.call(edition, relative_redirect_url)
     context.fail!(issues:) if issues.any?    
   end
 
   def remove_edition
     RemoveDocumentService.call(edition,
                                  user,
-                                 redirect_url: make_url_relative(params[:redirect_url]))
+                                 redirect_url: relative_redirect_url)
   # TODO
   # rescue GdsApi::BaseError => e
   #   GovukError.notify(e)
   #   context.fail!(api_error: true)
   end
 
-  def make_url_relative(url = "")
-    url.sub(%r{^(https?://)?(www\.)?gov\.uk/}, "/")
+  def relative_redirect_url
+    params[:redirect_url].sub(%r{^(https?://)?(www\.)?publishing-platform\.co\.uk/}, "/")
   end
 
 end
