@@ -3,11 +3,9 @@
     <% if @edition.published_but_needs_2i? %>
       <%= approve_button(@edition) %>
       <%= create_edition_button(@edition, secondary: true) %>
-      <%= withdraw_link(@edition, "d-block") %>
       <%= remove_link(@edition) %>      
     <% elsif @edition.published? %>   
       <%= create_edition_button(@edition) %>  
-      <%= withdraw_link(@edition, "d-block") %> 
       <%= remove_link(@edition) %>          
     <% elsif @edition.removed? %>
       <%= create_edition_button(@edition) %>         
@@ -16,9 +14,7 @@
       <%= delete_draft_link(@edition) %>        
     <% elsif !@edition.revision_synced? %>
       <%= create_preview_button(@edition) %>
-      <%= delete_draft_link(@edition) %>    
-    <% elsif @edition.withdrawn? %>
-      <%= undo_withdraw_link(@edition, %w(btn btn-primary)) %>      
+      <%= delete_draft_link(@edition) %>     
     <% elsif @edition.draft? %>
       <%= submit_for_2i_button(@edition) %>
       <%= preview_link(@edition, %w(btn btn-secondary mb-3)) %>

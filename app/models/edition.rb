@@ -18,7 +18,6 @@ class Edition < ApplicationRecord
                 submitted_for_review: "submitted_for_review",
                 published: "published",
                 published_but_needs_2i: "published_but_needs_2i",
-                withdrawn: "withdrawn",
                 removed: "removed",
                 discarded: "discarded",
                 superseded: "superseded",
@@ -37,7 +36,7 @@ class Edition < ApplicationRecord
   end
 
   def live?
-    %w[published published_but_needs_2i withdrawn removed].include?(state)
+    %w[published published_but_needs_2i removed].include?(state)
   end
 
   def editable?

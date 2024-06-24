@@ -34,12 +34,6 @@ module ActionsHelper
     end
   end
 
-  def withdraw_link(edition, extra_classes = [])
-    link_to "Withdraw",
-            withdraw_path(edition.document),
-            class: (extra_classes.present? ? Array(extra_classes) : nil)
-  end
-
   def remove_link(edition, extra_classes = [])
     link_to "Remove",
             remove_path(edition.document),
@@ -53,12 +47,6 @@ module ActionsHelper
              class: "mb-3" do
       submit_tag "Approve", class: %w[btn] + Array(btn_class)
     end
-  end
-
-  def undo_withdraw_link(edition, extra_classes = [])
-    link_to "Undo withdrawal",
-            unwithdraw_path(edition.document),
-            class: (extra_classes.present? ? Array(extra_classes) : nil)
   end
 
   def create_preview_button(edition, secondary: false)

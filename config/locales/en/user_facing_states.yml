@@ -8,8 +8,6 @@ en:
       name: Published but needs 2i review      
     published:
       name: Published
-    withdrawn:
-      name: Withdrawn
     removed:
       name: Removed
     discarded:

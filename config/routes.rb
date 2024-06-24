@@ -25,12 +25,6 @@ Rails.application.routes.draw do
     post "/submit-for-2i" => "review#submit_for_2i", as: :submit_for_2i
     post "/approve" => "review#approve", as: :approve
 
-    get "/withdraw" => "withdraw#new", as: :withdraw
-    post "/withdraw" => "withdraw#create"
-
-    get "/unwithdraw" => "unwithdraw#confirm", as: :unwithdraw
-    post "/unwithdraw" => "unwithdraw#unwithdraw"
-
     get "/remove" => "remove#new", as: :remove
     post "/remove" => "remove#create"
   end
