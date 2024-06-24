@@ -8,10 +8,10 @@ class PreviewDraftEditionService
 
   def call
     put_draft_content
-  # TODO
-  # rescue GdsApi::BaseError
-  #   edition.update!(revision_synced: false)
-  #   raise
+    # TODO
+    # rescue GdsApi::BaseError
+    #   edition.update!(revision_synced: false)
+    #   raise
   end
 
 private

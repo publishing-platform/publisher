@@ -26,21 +26,20 @@ private
 
   def check_for_issues
     issues = Requirements::Form::RemovalChecker.call(edition, relative_redirect_url)
-    context.fail!(issues:) if issues.any?    
+    context.fail!(issues:) if issues.any?
   end
 
   def remove_edition
     RemoveDocumentService.call(edition,
-                                 user,
-                                 redirect_url: relative_redirect_url)
-  # TODO
-  # rescue GdsApi::BaseError => e
-  #   GovukError.notify(e)
-  #   context.fail!(api_error: true)
+                               user,
+                               redirect_url: relative_redirect_url)
+    # TODO
+    # rescue GdsApi::BaseError => e
+    #   GovukError.notify(e)
+    #   context.fail!(api_error: true)
   end
 
   def relative_redirect_url
     params[:redirect_url].sub(%r{^(https?://)?(www\.)?publishing-platform\.co\.uk/}, "/")
   end
-
 end

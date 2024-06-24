@@ -9,7 +9,7 @@ class Requirements::Form::RemovalChecker
   end
 
   def check
-    if !validate_redirect(redirect_url)
+    unless validate_redirect(redirect_url)
       issues.create(:redirect_url, :invalid)
     end
   end
@@ -18,6 +18,7 @@ private
 
   def validate_redirect(redirect_url)
     return true if redirect_url.blank?
+
     regex = /^\/[a-z0-9]+(?:-[a-z0-9]+)*$/
     redirect_url =~ regex
   end

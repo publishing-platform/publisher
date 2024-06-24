@@ -28,9 +28,9 @@ private
 
   def create_preview
     PreviewDraftEditionService.call(edition)
-  # TODO
-  # rescue GdsApi::BaseError => e
-  #   GovukError.notify(e)
-  #   context.fail!(preview_failed: true)
+    # TODO
+    # rescue GdsApi::BaseError => e
+    #   GovukError.notify(e)
+    #   context.fail!(preview_failed: true)
   end
 end

@@ -11,11 +11,11 @@ class RemoveController < ApplicationController
     result = Remove::CreateInteractor.call(params:, user: current_user)
     edition, issues, api_error = result.to_h.values_at(:edition, :issues, :api_error)
 
-    if issues 
-      flash.now["requirements"] = { 
-        "items" => issues.items(link_options: { 
-          redirect_url: { href: "#redirect_url-field"} 
-        }) 
+    if issues
+      flash.now["requirements"] = {
+        "items" => issues.items(link_options: {
+          redirect_url: { href: "#redirect_url-field" },
+        }),
       }
 
       render :new,
@@ -32,6 +32,6 @@ class RemoveController < ApplicationController
              status: :service_unavailable
     else
       redirect_to document_path(edition.document)
-    end    
+    end
   end
 end

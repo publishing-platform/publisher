@@ -14,7 +14,7 @@ class PreviewController < ApplicationController
                   alert: t("documents.show.flashes.preview_error")
     else
       redirect_to preview_document_path(params[:document_id])
-    end  
+    end
   end
 
   def show
@@ -31,5 +31,5 @@ private
     {
       title: { href: edition_path(edition.document, anchor: "title-field") },
     }.merge(Hash[format_specific_options])
-  end  
+  end
 end

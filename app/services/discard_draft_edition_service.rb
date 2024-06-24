@@ -28,7 +28,7 @@ private
   end
 
   def discard_draft(edition)
-    # TODO:
+    # TODO: nh
     # begin
     #   GdsApi.publishing_api.discard_draft(edition.content_id)
     # rescue GdsApi::HTTPNotFound

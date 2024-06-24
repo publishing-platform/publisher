@@ -42,7 +42,7 @@ class DocumentType::TitleAndBasePathField
     issues = Requirements::Issues.new
     issues.create(:title, :blank) if edition.title.blank?
     issues
-  end  
+  end
 
   def publish_issues(_edition)
     Requirements::Issues.new

@@ -13,7 +13,7 @@ class DocumentType::BodyField
 
   def preview_issues(_edition)
     Requirements::Issues.new
-  end  
+  end
 
   def publish_issues(edition)
     issues = Requirements::Issues.new

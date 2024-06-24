@@ -24,7 +24,7 @@ private
       unpublish_without_redirect(edition)
     end
 
-    edition.update!(last_edited_by: user, state: :removed)    
+    edition.update!(last_edited_by: user, state: :removed)
   end
 
   def check_removable
@@ -52,5 +52,5 @@ private
     #   type: "gone",
     #   discard_drafts: true,
     # )
-  end  
+  end
 end

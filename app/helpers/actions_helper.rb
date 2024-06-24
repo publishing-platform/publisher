@@ -68,11 +68,11 @@ module ActionsHelper
              class: "mb-3" do
       submit_tag "Preview", class: %w[btn] + Array(btn_class)
     end
-  end  
+  end
 
   def preview_link(edition, extra_classes = [])
     link_to "Preview",
             preview_document_path(edition.document),
             class: (extra_classes.present? ? Array(extra_classes) : nil)
-  end  
+  end
 end
