@@ -12,7 +12,7 @@
     <% elsif @edition.submitted_for_review? || @edition.failed_to_publish? %>    
       <%= publish_link(@edition, %w(btn btn-primary mb-3)) %>
       <%= delete_draft_link(@edition) %>        
-    <% elsif !@edition.revision_synced? %>
+    <% elsif !@edition.edition_synced? %>
       <%= create_preview_button(@edition) %>
       <%= delete_draft_link(@edition) %>     
     <% elsif @edition.draft? %>
