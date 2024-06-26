@@ -13,7 +13,7 @@ class RemoveController < ApplicationController
 
     if issues
       flash.now["requirements"] = {
-        "title" => t("remove.new.flashes.remove_issues.error"),
+        "title" => t("remove.new.flashes.issues.error"),
         "items" => issues.items(link_options: {
           redirect_url: { href: "#redirect_url-field" },
         }),
