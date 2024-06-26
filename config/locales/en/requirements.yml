@@ -28,4 +28,4 @@ en:
         summary_message: Enter a body  
     redirect_url:
       invalid:
-        form_message: Redirect path is invalid
+        form_message: Enter a valid redirect path

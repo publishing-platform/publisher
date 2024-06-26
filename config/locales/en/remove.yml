@@ -3,6 +3,8 @@ en:
     new:
       title: "Remove '%{title}'"
       flashes:
+        remove_issues:
+          error: Before you can remove this document you need to
         publishing_api_error: Something went wrong when removing this document. Please try again. 
       intro_markdown: |
         Removed content is unpublished and will no longer be available.
