@@ -18,6 +18,6 @@ private
   attr_reader :edition, :user, :attributes
 
   def extended_attributes
-    attributes.merge(last_edited_by: user)
+    attributes.merge(last_edited_by: user, revision_synced: false)
   end
 end

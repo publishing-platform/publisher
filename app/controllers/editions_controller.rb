@@ -35,7 +35,7 @@ class EditionsController < ApplicationController
     result = Editions::DestroyInteractor.call(params:, user: current_user)
 
     if result.api_error
-      redirect_to document_path(params[:document]),
+      redirect_to document_path(params[:document_id]),
                   alert: t("documents.show.flashes.delete_draft_error")
     else
       redirect_to documents_path
