@@ -31,6 +31,7 @@ private
       current: true,
       last_edited_by: user,
       number: 1,
+      update_type: "major",
     )
 
     edition.save!

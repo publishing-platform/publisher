@@ -28,9 +28,8 @@ private
 
   def create_preview
     PreviewDraftEditionService.call(edition)
-    # TODO
-    # rescue GdsApi::BaseError => e
-    #   GovukError.notify(e)
-    #   context.fail!(preview_failed: true)
+  rescue PublishingPlatformApi::BaseError => e
+    PublishingPlatformError.notify(e)
+    context.fail!(preview_failed: true)
   end
 end

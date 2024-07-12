@@ -4,7 +4,7 @@ class DocumentType
   attr_reader :id,
               :label,
               :contents,
-              :metadata,
+              :publishing_metadata,
               :path_prefix
 
   # class-level method
@@ -23,13 +23,13 @@ class DocumentType
           "DocumentType::#{field_id.camelize}Field".constantize.new
         end
 
-        document_type["metadata"] = Metadata.new(document_type["metadata"])
+        document_type["publishing_metadata"] = PublishingMetadata.new(document_type["publishing_metadata"])
         new(document_type)
       end
     end
   end
 
-  class Metadata
+  class PublishingMetadata
     include InitializeWithHash
     attr_reader :schema_name, :rendering_app
   end

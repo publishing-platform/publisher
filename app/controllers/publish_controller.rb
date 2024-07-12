@@ -48,6 +48,7 @@ private
     end
     {
       title: { href: edition_path(edition.document, anchor: "title-field") },
+      change_note: { href: edition_path(edition.document, anchor: "change_note-field") },
     }.merge(Hash[format_specific_options])
   end
 end

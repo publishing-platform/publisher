@@ -13,6 +13,9 @@ class CreateEditions < ActiveRecord::Migration[7.1]
       t.datetime :published_at, precision: nil
       t.uuid :auth_bypass_id, null: false
       t.boolean :edition_synced, default: false, null: false
+      t.string :update_type, null: false
+      t.text :change_note
+      t.json :change_history, default: [], null: false
 
       t.references :created_by, null: false, foreign_key: { to_table: :users, on_delete: :restrict }
       t.references :last_edited_by, null: false, foreign_key: { to_table: :users, on_delete: :restrict }

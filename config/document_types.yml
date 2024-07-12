@@ -8,7 +8,7 @@ generic: &generic
 document_types:
   - id: answer
     label: Answer
-    metadata:
+    publishing_metadata:
       schema_name: answer
       rendering_app: frontend
     <<: *generic 

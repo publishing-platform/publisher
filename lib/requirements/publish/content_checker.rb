@@ -11,5 +11,11 @@ class Requirements::Publish::ContentChecker
     edition.document_type.contents.each do |field|
       issues.push(*field.publish_issues(edition))
     end
+
+    if edition.document.live_edition &&
+        edition.update_type == "major" &&
+        edition.change_note.blank?
+      issues.create(:change_note, :blank)
+    end    
   end
 end

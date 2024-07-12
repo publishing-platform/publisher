@@ -37,6 +37,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_05_163337) do
     t.datetime "published_at", precision: nil
     t.uuid "auth_bypass_id", null: false
     t.boolean "edition_synced", default: false, null: false
+    t.string "update_type", null: false
+    t.text "change_note"
+    t.json "change_history", default: [], null: false
     t.bigint "created_by_id", null: false
     t.bigint "last_edited_by_id", null: false
     t.bigint "document_id", null: false

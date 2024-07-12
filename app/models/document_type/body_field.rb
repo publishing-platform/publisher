@@ -3,6 +3,14 @@ class DocumentType::BodyField
     "body"
   end
 
+  def payload(edition)
+    {
+      details: {
+        body: edition.contents[id], # TODO - should this be html or markdown or something different?
+      },
+    }
+  end  
+
   def updater_params(_edition, params)
     { contents: { body: params[:body] } }
   end

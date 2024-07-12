@@ -5,6 +5,16 @@ class DocumentType::TitleAndBasePathField
     "title_and_base_path"
   end
 
+  def payload(edition)
+    {
+      base_path: edition.base_path,
+      title: edition.title,
+      routes: [
+        { path: edition.base_path, type: "exact" },
+      ],
+    }
+  end  
+
   def updater_params(edition, params)
     title = params[:title]&.strip
     base_path = GenerateBasePathService.call(edition, title:)

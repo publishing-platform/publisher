@@ -14,5 +14,9 @@
     <%= render "editions/edit/#{field.id}_field", edition: @edition, issues: @issues %>
   <% end %>
 
+  <% if @edition.document.live_edition %>
+    <%= render "editions/edit/change_notes", edition: @edition %>
+  <% end %>  
+
   <%= submit_tag "Save", class: "btn btn-primary" %>
 <% end %>

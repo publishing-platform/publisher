@@ -5,6 +5,10 @@ class DocumentType::SummaryField
     "summary"
   end
 
+  def payload(edition)
+    { description: edition.summary }
+  end  
+
   def updater_params(_edition, params)
     { summary: params[:summary]&.strip }
   end

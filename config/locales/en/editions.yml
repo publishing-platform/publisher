@@ -10,6 +10,12 @@ en:
         available: Page address
         no_title: You haven't entered a title yet.
         error: Unable to preview address, please edit title and try again.
+      change_note:
+        title: Public change note
+      update_type:
+        title: Is the content change significant to users?
+        minor_name: No - a minor style update
+        major_name: Yes - information has been added or updated        
     confirm_delete_draft:
       title: Delete the draft of '%{title}'
       description_markdown: |

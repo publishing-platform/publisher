@@ -31,10 +31,16 @@ private
   end
 
   def update_edition
-    Rails.logger.debug content_params
-    EditDraftEditionService.call(edition, user, content_params)
+    # Rails.logger.debug content_params
+    EditDraftEditionService.call(edition, user, content_params.merge(change_note_params))
     edition.save!
   end
+
+  def change_note_params
+    return {} if edition.first?
+
+    { update_type: params[:update_type], change_note: params[:change_note] }
+  end  
 
   def content_params
     @content_params ||= fields.reduce({}) do |hash, field|
