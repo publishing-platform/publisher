@@ -41,8 +41,8 @@ class DocumentType::TitleAndBasePathField
     #   if base_path_conflict?(edition, params)
     #     issues.create(:title, :conflict)
     #   end
-    # rescue GdsApi::BaseError => e
-    #   GovukError.notify(e)
+    # rescue PublishingPlatformApi::BaseError => e
+    #   PublishingPlatformError.notify(e)
     # end
 
     issues
@@ -62,7 +62,7 @@ private
 
   def base_path_conflict?(edition, params)
     # TODO
-    # base_path_owner = GdsApi.publishing_api.lookup_content_id(
+    # base_path_owner = PublishingPlatformApi.publishing_api.lookup_content_id(
     #   base_path: params[:base_path],
     #   with_drafts: true,
     #   exclude_document_types: [],

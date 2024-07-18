@@ -21,9 +21,8 @@ private
 
   def discard_draft
     DiscardDraftEditionService.call(edition, user)
-    # TODO
-    # rescue GdsApi::BaseError => e
-    #   GovukError.notify(e)
-    #   context.fail!(api_error: true)
+    rescue PublishingPlatformApi::BaseError => e
+      PublishingPlatformError.notify(e)
+      context.fail!(api_error: true)
   end
 end

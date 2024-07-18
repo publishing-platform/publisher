@@ -28,20 +28,19 @@ private
   end
 
   def discard_draft(edition)
-    # TODO: nh
-    # begin
-    #   GdsApi.publishing_api.discard_draft(edition.content_id)
-    # rescue GdsApi::HTTPNotFound
-    #   Rails.logger.warn("No draft to discard for content id #{edition.content_id}")
-    # rescue GdsApi::HTTPUnprocessableEntity => e
-    #   no_draft_message = "There is not a draft edition of this document to discard"
+    begin
+      PublishingPlatformApi.publishing_api.discard_draft(edition.content_id)
+    rescue PublishingPlatformApi::HTTPNotFound
+      Rails.logger.warn("No draft to discard for content id #{edition.content_id}")
+    rescue PublishingPlatformApi::HTTPUnprocessableEntity => e
+      no_draft_message = "There is not a draft edition of this document to discard"
 
-    #   if e.error_details.respond_to?(:dig) && e.error_details.dig("error", "message") == no_draft_message
-    #     Rails.logger.warn("No draft to discard for content id #{edition.content_id}")
-    #   else
-    #     raise
-    #   end
-    # end
+      if e.error_details.respond_to?(:dig) && e.error_details.dig("error", "message") == no_draft_message
+        Rails.logger.warn("No draft to discard for content id #{edition.content_id}")
+      else
+        raise
+      end
+    end
 
     edition.update!(last_edited_by: user, state: :discarded, current: false)
   end

@@ -9,7 +9,7 @@ class PreviewDraftEditionService
   def call
     put_draft_content
     # TODO - is there any point in attemting update of edition_synced in rescue? - all db changes will be rolled back as they are in a transaction in the interactor
-    # rescue GdsApi::BaseError
+    # rescue PublishingPlatformApi::BaseError
     #   edition.update!(edition_synced: false)
     #   raise
   end

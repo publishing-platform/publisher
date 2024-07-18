@@ -36,21 +36,19 @@ private
   end
 
   def unpublish_with_redirect(edition, redirect_url)
-    # TODO
-    # GdsApi.publishing_api.unpublish(
-    #   edition.content_id,
-    #   type: "redirect",
-    #   alternative_path: redirect_url,
-    #   discard_drafts: true,
-    # )
+    PublishingPlatformApi.publishing_api.unpublish(
+      edition.content_id,
+      type: "redirect",
+      alternative_path: redirect_url,
+      discard_drafts: true,
+    )
   end
 
   def unpublish_without_redirect(edition)
-    # TODO
-    # GdsApi.publishing_api.unpublish(
-    #   edition.content_id,
-    #   type: "gone",
-    #   discard_drafts: true,
-    # )
+    PublishingPlatformApi.publishing_api.unpublish(
+      edition.content_id,
+      type: "gone",
+      discard_drafts: true,
+    )
   end
 end
