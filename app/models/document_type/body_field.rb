@@ -6,7 +6,10 @@ class DocumentType::BodyField
   def payload(edition)
     {
       details: {
-        body: edition.contents[id], # TODO - should this be html or markdown or something different?
+        body: [
+          content_type: "text/markdown",
+          content: edition.contents[id]
+        ]
       },
     }
   end  

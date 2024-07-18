@@ -15,10 +15,6 @@ class PublishDraftEditionService
     publish_current_edition
     supersede_live_edition
     set_new_live_edition
-    # TODO
-    # rescue GdsApi::BaseError => e
-    #   GovukError.notify(e)
-    #   raise
   end
 
 private
@@ -28,12 +24,7 @@ private
   delegate :document, to: :edition
 
   def publish_current_edition
-    # TODO
-    # GdsApi.publishing_api.publish(
-    #   document.content_id,
-    #   nil, # Sending update_type is deprecated (now in payload)
-    #   locale: document.locale,
-    # )
+    PublishingPlatformApi.publishing_api.publish(document.content_id)
   end
 
   def supersede_live_edition
