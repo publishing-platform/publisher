@@ -4,7 +4,7 @@ module ApplicationHelper
   end
 
   def render_markdown(content)
-    raw(Kramdown::Document.new(content).to_html)
+    raw(PublishingPlatformMarkdown::Document.new(content).to_html)
   end
 
   def name_or_fallback(user)
