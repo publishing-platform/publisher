@@ -18,6 +18,7 @@ class PublishingApiPayload
       rendering_app: publishing_metadata.rendering_app,
       update_type: edition.update_type,
       details:,
+      auth_bypass_ids: [edition.auth_bypass_id],
       public_updated_at: history.public_updated_at,
     }
     payload[:first_published_at] = history.first_published_at if history.first_published_at.present?
