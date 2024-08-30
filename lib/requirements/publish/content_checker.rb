@@ -16,6 +16,6 @@ class Requirements::Publish::ContentChecker
         edition.update_type == "major" &&
         edition.change_note.blank?
       issues.create(:change_note, :blank)
-    end    
+    end
   end
 end

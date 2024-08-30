@@ -23,7 +23,7 @@ class Edition < ApplicationRecord
                 superseded: "superseded",
                 failed_to_publish: "failed_to_publish" }
 
-  enum update_type: { major: "major", minor: "minor" }                
+  enum update_type: { major: "major", minor: "minor" }
 
   attribute :auth_bypass_id, default: -> { SecureRandom.uuid }
 

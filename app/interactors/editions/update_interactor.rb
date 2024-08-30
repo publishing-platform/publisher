@@ -40,7 +40,7 @@ private
     return {} if edition.first?
 
     { update_type: params[:update_type], change_note: params[:change_note] }
-  end  
+  end
 
   def content_params
     @content_params ||= fields.reduce({}) do |hash, field|

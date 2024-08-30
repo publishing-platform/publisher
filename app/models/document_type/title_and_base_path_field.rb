@@ -13,7 +13,7 @@ class DocumentType::TitleAndBasePathField
         { path: edition.base_path, type: "exact" },
       ],
     }
-  end  
+  end
 
   def updater_params(edition, params)
     title = params[:title]&.strip

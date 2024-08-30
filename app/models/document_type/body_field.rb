@@ -8,11 +8,11 @@ class DocumentType::BodyField
       details: {
         body: [
           content_type: "text/markdown",
-          content: edition.contents[id]
-        ]
+          content: edition.contents[id],
+        ],
       },
     }
-  end  
+  end
 
   def updater_params(_edition, params)
     { contents: { body: params[:body] } }

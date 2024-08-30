@@ -11,17 +11,17 @@ class CreateNextEditionService
 
     current_edition.update!(current: false)
     EditDraftEditionService.call(
-        next_edition, 
-        user,        
-        created_by: user,
-        number: current_edition.document.next_edition_number,
-        current: true,
-        live: false,
-        published_at: nil,
-        change_note: "",
-        update_type: "major",
-        change_history:,
-      )
+      next_edition,
+      user,
+      created_by: user,
+      number: current_edition.document.next_edition_number,
+      current: true,
+      live: false,
+      published_at: nil,
+      change_note: "",
+      update_type: "major",
+      change_history:,
+    )
     next_edition.save!
     next_edition
   end
@@ -46,5 +46,5 @@ private
       "note" => current_edition.change_note,
       "public_timestamp" => current_edition.published_at.rfc3339,
     )
-  end  
+  end
 end
