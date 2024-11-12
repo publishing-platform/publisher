@@ -16,7 +16,7 @@ gem "puma", ">= 5.0"
 gem "sassc-rails"
 gem "sprockets-rails"
 gem "tzinfo-data", platforms: %i[mswin mswin64 mingw x64_mingw jruby]
-gem "uglifier"
+gem "terser"
 
 group :development, :test do
   gem "debug", platforms: %i[mri mswin mswin64 mingw x64_mingw]

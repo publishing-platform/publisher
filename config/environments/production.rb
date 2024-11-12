@@ -92,7 +92,7 @@ Rails.application.configure do
   config.sass.line_comments = false
 
   # Compress JavaScripts and CSS.
-  config.assets.js_compressor = :uglifier
+  config.assets.js_compressor = :terser
 
   credentials.jwt_auth_secret = ENV["JWT_AUTH_SECRET"]
 end
