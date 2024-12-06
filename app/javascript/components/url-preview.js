@@ -2,7 +2,7 @@ function UrlPreview ($module) {
   this.$module = $module
   this.urlPreview = this.$module.querySelector('.js-url-preview-url')
   this.basePath = this.$module.querySelector('.js-url-preview-path')
-  this.defaultMessage = this.$module.querySelector('.js-url-preview-default-message')  
+  this.defaultMessage = this.$module.querySelector('.js-url-preview-default-message')
   this.errorMessage = this.$module.querySelector('.js-url-preview-error-message')
   this.path = this.$module.getAttribute('data-url-preview-path')
   this.input = document.querySelector('[data-url-preview="input"]')
@@ -33,11 +33,11 @@ UrlPreview.prototype.showPathPreview = function (path) {
 }
 
 UrlPreview.prototype.fetchPathPreview = function (path, input) {
-  var url = new URL(document.location.origin + path)
+  const url = new URL(document.location.origin + path)
   url.searchParams.append('title', input.value)
 
-  var controller = new window.AbortController()
-  var options = { credentials: 'include', signal: controller.signal }
+  const controller = new window.AbortController()
+  const options = { credentials: 'include', signal: controller.signal }
   setTimeout(function () { controller.abort() }, 5000)
 
   return window.fetch(url, options)
@@ -51,7 +51,7 @@ UrlPreview.prototype.fetchPathPreview = function (path, input) {
 }
 
 UrlPreview.prototype.handleBlur = function (event) {
-  var input = event.target
+  const input = event.target
 
   if (!input.value) {
     this.showNoTitleMessage()

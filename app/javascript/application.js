@@ -1,6 +1,6 @@
 // Entry point for the build script in your package.json
-import "bootstrap/dist/js/bootstrap.bundle.min.js"
-import UrlPreview from "./components/url-preview"
+import 'bootstrap/dist/js/bootstrap.bundle.min.js'
+import UrlPreview from './components/url-preview'
 import CopyToClipboard from './components/copy-to-clipboard'
 
 const $urlPreview = document.querySelector('[data-module="url-preview"]')
