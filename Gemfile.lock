@@ -102,7 +102,7 @@ GEM
     docile (1.4.1)
     domain_name (0.6.20240107)
     drb (2.2.1)
-    error_highlight (0.6.0)
+    error_highlight (0.7.0)
     erubi (1.13.0)
     execjs (2.10.0)
     factory_bot (6.5.0)
