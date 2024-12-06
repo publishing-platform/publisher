@@ -29,6 +29,10 @@ class DocumentType
     end
   end
 
+  def self.clear
+    @all = nil
+  end
+
   class PublishingMetadata
     include InitializeWithHash
     attr_reader :schema_name, :rendering_app

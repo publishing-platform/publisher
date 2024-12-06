@@ -10,6 +10,8 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require "rspec/rails"
 # Add additional requires below this line. Rails is not loaded until this point!
 
+require "json_matchers/rspec"
+
 require "publishing_platform_test"
 PublishingPlatformTest.configure
 
@@ -27,6 +29,8 @@ PublishingPlatformTest.configure
 # require only the support files necessary.
 #
 Rails.root.glob("spec/support/**/*.rb").sort_by(&:to_s).each { |f| require f }
+
+JsonMatchers.schema_root = "spec/support/schemas"
 
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove these lines.
@@ -72,6 +76,10 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 
   config.include ActiveSupport::Testing::TimeHelpers
+
+  config.before(:all) do
+    DocumentType.clear
+  end
 
   config.before(:each, type: :system) do
     driven_by :headless_chrome
