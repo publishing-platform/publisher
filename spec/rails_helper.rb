@@ -76,9 +76,14 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 
   config.include ActiveSupport::Testing::TimeHelpers
+  config.include AuthenticationHelper, type: ->(spec) { spec.in?(%i[system request]) }
 
   config.before(:all) do
     DocumentType.clear
+  end
+
+  config.after :each, type: ->(spec) { spec.in?(%i[system request]) } do
+    reset_authentication
   end
 
   config.before(:each, type: :system) do

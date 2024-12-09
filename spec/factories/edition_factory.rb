@@ -26,5 +26,13 @@ FactoryBot.define do
       edition.number = edition.document&.next_edition_number unless edition.number
       edition.document_type_id = evaluator.document_type.id
     end
+
+    trait :published do
+      summary { SecureRandom.alphanumeric(10) }
+      live { true }
+      state { "published" }
+      first_published_at { Time.zone.now }
+      published_at { Time.zone.now }
+    end
   end
 end
