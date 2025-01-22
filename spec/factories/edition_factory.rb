@@ -4,6 +4,7 @@ FactoryBot.define do
     live { false }
     state { "draft" }
     update_type { "major" }
+    title { SecureRandom.alphanumeric(10) }
     association :created_by, factory: :user
     association :last_edited_by, factory: :user
 
