@@ -28,6 +28,14 @@ FactoryBot.define do
       edition.document_type_id = evaluator.document_type.id
     end
 
+    trait :publishable do
+      summary { SecureRandom.alphanumeric(10) }
+    end
+
+    trait :not_publishable do
+      summary { "" }
+    end
+
     trait :published do
       summary { SecureRandom.alphanumeric(10) }
       live { true }
