@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe EditionAssertions do
   include described_class
 
-  describe ".assert_edition_state" do
+  describe "#assert_edition_state" do
     let(:edition) { build :edition }
 
     it "does nothing when the assertion block returns true" do
