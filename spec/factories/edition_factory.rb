@@ -25,7 +25,7 @@ FactoryBot.define do
       end
 
       edition.number = edition.document&.next_edition_number unless edition.number
-      edition.document_type_id = evaluator.document_type.id
+      edition.document_type_id = evaluator.document_type_id || evaluator.document_type.id
     end
 
     trait :publishable do
