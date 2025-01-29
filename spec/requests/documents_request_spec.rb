@@ -1,13 +1,13 @@
 require "rails_helper"
 
-RSpec.describe "Documents", type: :request do
+RSpec.describe "/documents", type: :request do
   let(:user) { create(:user) }
 
   before do
     login_as(user)
   end
 
-  describe "GET index" do
+  describe "GET /index" do
     it "renders list of document editions" do
       create(:edition, title: "test edition")
       get documents_path
@@ -102,7 +102,7 @@ RSpec.describe "Documents", type: :request do
     end
   end
 
-  describe "GET new" do
+  describe "GET /new" do
     it "renders a form allowing the user to select the content type of the new document" do
       answer = DocumentType.find("answer")
 
@@ -116,4 +116,13 @@ RSpec.describe "Documents", type: :request do
       end
     end
   end
+
+  # describe "POST /create" do
+  # end
+
+  # describe "GET /show" do
+  # end
+
+  # describe "GET /generate-path" do
+  # end
 end
