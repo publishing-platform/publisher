@@ -23,7 +23,7 @@ RSpec.describe DocumentType::BodyField do
     let(:edition) { build :edition }
 
     it "returns no issues" do
-      issues = described_class.new.form_issues(edition)
+      issues = described_class.new.form_issues(edition, nil)
       expect(issues).to be_empty
     end
   end

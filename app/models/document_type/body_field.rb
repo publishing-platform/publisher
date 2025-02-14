@@ -18,7 +18,7 @@ class DocumentType::BodyField
     { contents: { body: params[:body] } }
   end
 
-  def form_issues(_edition)
+  def form_issues(_edition, _params)
     Requirements::Issues.new
   end
 
