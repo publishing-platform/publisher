@@ -16,7 +16,6 @@ class CreateNextEditionService
       created_by: user,
       number: current_edition.document.next_edition_number,
       current: true,
-      live: false,
       published_at: nil,
       change_note: "",
       update_type: "major",
@@ -33,6 +32,7 @@ private
   def next_edition
     @next_edition ||= current_edition.dup.tap do |e|
       e.state = :draft
+      e.live = false
     end
   end
 

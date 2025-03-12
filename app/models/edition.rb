@@ -37,10 +37,6 @@ class Edition < ApplicationRecord
     DocumentType.find(document_type_id)
   end
 
-  def live?
-    %w[published published_but_needs_2i removed].include?(state)
-  end
-
   def editable?
     !live?
   end
