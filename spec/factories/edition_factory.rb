@@ -5,6 +5,7 @@ FactoryBot.define do
     state { "draft" }
     update_type { "major" }
     title { SecureRandom.alphanumeric(10) }
+    base_path { title ? "/#{title.parameterize}" : nil }
     association :created_by, factory: :user
     association :last_edited_by, factory: :user
 
