@@ -117,12 +117,175 @@ RSpec.describe "/documents", type: :request do
     end
   end
 
-  # describe "POST /create" do
-  # end
+  describe "POST /create" do
+    it "redirects to edit edition path on success" do
+      post documents_path, params: { document_type: "answer" }
 
-  # describe "GET /show" do
-  # end
+      expect(response).to redirect_to(edition_path(Document.last))
+      follow_redirect!
+      expect(response.body).to include("answer")
+    end
 
-  # describe "GET /generate-path" do
-  # end
+    it "returns an unprocessable response with an issue when a document type isn't selected" do
+      post documents_path, params: {}
+
+      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response.body).to include(
+        I18n.t("requirements.document_type.not_selected.form_message"),
+      )
+    end
+  end
+
+  describe "GET /show" do
+    let(:document) { create(:document) }
+
+    it "returns successfully" do
+      create(:edition, document:)
+
+      get document_path(document)
+      expect(response).to have_http_status(:ok)
+    end
+
+    context "when edition is draft" do
+      let(:edition) { create(:edition, document:) }
+
+      it "renders a link to edit the edition content" do
+        get document_path(edition.document)
+        assert_select "a[href='#{edition_path(edition.document)}']", text: "Edit"
+      end
+
+      it "renders a link to delete the edition" do
+        get document_path(edition.document)
+        assert_select "a[href='#{confirm_delete_draft_path(edition.document)}']", text: "Delete draft"
+      end
+
+      it "renders a form to create edition preview" do
+        get document_path(edition.document)
+        assert_select "form[action='#{preview_document_path(edition.document)}'] input[type='submit'][value='Preview']"
+      end
+
+      it "does not render a form to create a new draft edition" do
+        get document_path(edition.document)
+        assert_select "form[action='#{create_edition_path(edition.document)}'] input[type='submit'][value='Create new edition']", count: 0
+      end
+
+      context "and edition is synced" do
+        before do
+          edition.update!(edition_synced: true)
+        end
+
+        it "renders a form to submit edition for 2i review" do
+          get document_path(edition.document)
+          assert_select "form[action='#{submit_for_2i_path(edition.document)}'] input[type='submit'][value='Submit for 2i review']"
+        end
+
+        it "renders a link to preview the edition" do
+          get document_path(edition.document)
+          assert_select "a[href='#{preview_document_path(edition.document)}']", text: "Preview"
+        end
+
+        it "renders a link to publish the edition" do
+          get document_path(edition.document)
+          assert_select "a[href='#{publish_confirmation_path(edition.document)}']", text: "Publish"
+        end
+      end
+    end
+
+    context "when edition is submitted for review" do
+      let(:edition) { create(:edition, document:, state: "submitted_for_review") }
+
+      it "renders a link to publish the edition" do
+        get document_path(edition.document)
+        assert_select "a[href='#{publish_confirmation_path(edition.document)}']", text: "Publish"
+      end
+
+      it "renders a link to delete the edition" do
+        get document_path(edition.document)
+        assert_select "a[href='#{confirm_delete_draft_path(edition.document)}']", text: "Delete draft"
+      end
+    end
+
+    context "when edition is removed" do
+      let(:edition) { create(:edition, document:, state: "removed") }
+
+      it "renders a form to create a new draft edition" do
+        get document_path(edition.document)
+        assert_select "form[action='#{create_edition_path(edition.document)}'] input[type='submit'][value='Create new edition']"
+      end
+    end
+
+    context "when edition is published" do
+      let(:edition) { create(:edition, :published) }
+
+      it "renders a form to create a new draft edition" do
+        get document_path(edition.document)
+        assert_select "form[action='#{create_edition_path(edition.document)}'] input[type='submit'][value='Create new edition']"
+      end
+
+      it "renders a link to remove the edition" do
+        get document_path(edition.document)
+        assert_select "a[href='#{remove_path(edition.document)}']", text: "Remove"
+      end
+
+      it "does not render a link to delete the edition" do
+        get document_path(edition.document)
+        assert_select "a[href='#{confirm_delete_draft_path(edition.document)}']", text: "Delete draft", count: 0
+      end
+
+      it "does not render a link to publish the edition" do
+        get document_path(edition.document)
+        assert_select "a[href='#{publish_confirmation_path(edition.document)}']", text: "Publish", count: 0
+      end
+    end
+
+    context "when edition is published but needs 2i" do
+      let(:edition) { create(:edition, :published, state: "published_but_needs_2i") }
+
+      it "renders a form to approve edition" do
+        get document_path(edition.document)
+        assert_select "form[action='#{approve_path(edition.document)}'] input[type='submit'][value='Approve']"
+      end
+
+      it "renders a form to create a new draft edition" do
+        get document_path(edition.document)
+        assert_select "form[action='#{create_edition_path(edition.document)}'] input[type='submit'][value='Create new edition']"
+      end
+
+      it "renders a link to remove the edition" do
+        get document_path(edition.document)
+        assert_select "a[href='#{remove_path(edition.document)}']", text: "Remove"
+      end
+
+      it "does not render a link to delete the edition" do
+        get document_path(edition.document)
+        assert_select "a[href='#{confirm_delete_draft_path(edition.document)}']", text: "Delete draft", count: 0
+      end
+
+      it "does not render a link to publish the edition" do
+        get document_path(edition.document)
+        assert_select "a[href='#{publish_confirmation_path(edition.document)}']", text: "Publish", count: 0
+      end
+    end
+
+    it "returns 404 if document not found" do
+      get document_path({ document_id: "non-existent" })
+      expect(response).to have_http_status(:not_found)
+    end
+  end
+
+  describe "GET /generate-path" do
+    it "returns a text response of a path" do
+      edition = create(:edition, title: "A title")
+      get generate_path_path(edition.document, title: "A title")
+
+      expect(response).to have_http_status(:ok)
+      expect(response.media_type).to eq("text/plain")
+      expect(response.body).to match("/a-title")
+    end
+
+    it "returns 404 if document not found" do
+      get generate_path_path({ document_id: "non-existent" })
+      expect(response).to have_http_status(:not_found)
+    end
+  end
 end
