@@ -4,6 +4,10 @@ en:
     unknown_user: Unknown user
     index:
       title: Documents
+      search_results:
+        summary_html:
+          one: "<strong>1</strong> document"
+          other: "<strong>%{count}</strong> documents"      
       filter:
         title_or_url: Title or URL
         document_type: Document type
