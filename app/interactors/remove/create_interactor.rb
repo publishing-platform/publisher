@@ -39,6 +39,6 @@ private
   end
 
   def relative_redirect_url
-    params[:redirect_url].sub(%r{^(https?://)?(www\.)?publishing-platform\.co\.uk/}, "/")
+    params[:redirect_url].sub(%r{^(https?://)?(www\.)?publishing-platform\.co\.uk/}, "/") if params[:redirect_url].present?
   end
 end
