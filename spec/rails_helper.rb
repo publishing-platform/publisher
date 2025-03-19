@@ -12,7 +12,7 @@ require "rspec/rails"
 # Add additional requires below this line. Rails is not loaded until this point!
 
 require "webmock/rspec"
-WebMock.disable_net_connect!
+WebMock.disable_net_connect!(allow_localhost: true)
 
 require "json_matchers/rspec"
 
