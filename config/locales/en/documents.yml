@@ -17,6 +17,12 @@ en:
     show:
       contents:
         title: Content
+        items:
+          update_type: Update type
+          change_note: Change note
+        update_type:
+          minor: There’s no change to the published information. For example, spelling corrections.
+          major: There’s a change to the published information.        
       flashes:
         pre_preview_issues:
           error: Before you can preview this document you need to      

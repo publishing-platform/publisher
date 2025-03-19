@@ -4,9 +4,30 @@
     <%= edit_link(@edition) %> 
   <% end %>   
 <% end %>
+
+<% edition_metadata = [] %>
+
+<% unless @edition.first? %>
+  <% edition_metadata << {
+      field: t("documents.show.contents.items.update_type"),
+      value: t("documents.show.contents.update_type.#{@edition.update_type}"),
+  } %>
+<% end %>
+
+<% if !@edition.first? && @edition.major? %>
+  <% edition_metadata << {
+    field: t("documents.show.contents.items.change_note"),
+    value: @edition.change_note,
+  } %>
+<% end %>
+
 <dl>
   <% @edition.document_type.contents.each do |field| %>
     <dt class="mb-2"><%= t_doctype_field(@edition, "#{field.id}.label") %></dt>
     <dd class="mb-3"><%= render("documents/show/contents/#{field.id}_field", edition: @edition) %></dd>
   <% end %>
+  <% edition_metadata.each do |metadata| %>
+    <dt class="mb-2"><%= metadata[:field] %></dt>
+    <dd class="mb-3"><%= metadata[:value] %></dd>
+  <% end %>  
 </dl>
