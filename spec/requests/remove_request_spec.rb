@@ -64,7 +64,7 @@ RSpec.describe "/documents/:document_id/remove", type: :request do
     end
 
     it "returns 404 if document not found" do
-      get remove_path({ document_id: "non-existent" })
+      post remove_path({ document_id: "non-existent" })
       expect(response).to have_http_status(:not_found)
     end
   end
