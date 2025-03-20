@@ -426,7 +426,7 @@ DEPENDENCIES
   json_matchers
   pg (~> 1.5)
   publishing_platform_api_adapters
-  publishing_platform_app_config (= 0.3.0)
+  publishing_platform_app_config
   publishing_platform_location
   publishing_platform_markdown
   publishing_platform_rubocop
