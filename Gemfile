@@ -3,6 +3,7 @@ source "https://rubygems.org"
 gem "rails", "7.2.2"
 
 gem "bootsnap", require: false
+gem "dartsass-rails"
 gem "interactor"
 gem "jbuilder"
 gem "jsbundling-rails"
@@ -12,7 +13,6 @@ gem "publishing_platform_app_config"
 gem "publishing_platform_location"
 gem "publishing_platform_markdown"
 gem "publishing_platform_sso"
-gem "sassc-rails"
 gem "sprockets-rails"
 gem "terser"
 gem "tzinfo-data", platforms: %i[mswin mswin64 mingw x64_mingw jruby]
