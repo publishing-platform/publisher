@@ -14,16 +14,16 @@ class Edition < ApplicationRecord
       .find_by!(document_id:)
   }
 
-  enum state: { draft: "draft",
-                submitted_for_review: "submitted_for_review",
-                published: "published",
-                published_but_needs_2i: "published_but_needs_2i",
-                removed: "removed",
-                discarded: "discarded",
-                superseded: "superseded",
-                failed_to_publish: "failed_to_publish" }
+  enum :state, { draft: "draft",
+                 submitted_for_review: "submitted_for_review",
+                 published: "published",
+                 published_but_needs_2i: "published_but_needs_2i",
+                 removed: "removed",
+                 discarded: "discarded",
+                 superseded: "superseded",
+                 failed_to_publish: "failed_to_publish" }
 
-  enum update_type: { major: "major", minor: "minor" }
+  enum :update_type, { major: "major", minor: "minor" }
 
   attribute :auth_bypass_id, default: -> { SecureRandom.uuid }
 
