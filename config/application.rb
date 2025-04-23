@@ -41,5 +41,7 @@ module Publisher
     config.generators.system_tests = nil
 
     config.assets.css_compressor = nil
+
+    config.assets.prefix = "/assets/publisher"
   end
 end
